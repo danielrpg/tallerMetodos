@@ -92,11 +92,12 @@ public class DatosHorarioContentPanel extends JPanel {
 
 
         panel.setLayout(null);
-        panel.setBorder(LineBorder.createBlackLineBorder());
+      //  panel.setBorder(LineBorder.createBlackLineBorder());
+        panel.setPreferredSize(new Dimension(295, 200));
         JScrollPane jScrollPane = new JScrollPane(panel);
-        jScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        jScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
-        jScrollPane.setBounds(10, 190, 280, 200);
+      //  jScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        jScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        jScrollPane.setBounds(3, 190, 295, 200);
 
 
         this.add(labelUno1);
