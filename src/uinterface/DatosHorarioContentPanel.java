@@ -26,6 +26,8 @@ public class DatosHorarioContentPanel extends JPanel {
     private JSpinner spinner;
     private JTextField textUbo;
 
+
+    private SpinnerDateModel spinnerDateModelDos;
     private JLabel labelDos1;
     private JLabel labelDos2;
     private JTextField textDos;
@@ -76,8 +78,8 @@ public class DatosHorarioContentPanel extends JPanel {
         labelUno2 = new JLabel("am.");
         labelUno2.setBounds(275, 30, 50, 20);
 
-
-        spinnerDos = new JSpinner(spinnerDateModel);
+        spinnerDateModelDos = new SpinnerDateModel(date, null, null, Calendar.HOUR_OF_DAY);
+        spinnerDos = new JSpinner(spinnerDateModelDos);
         JSpinner.DateEditor dateEditor1 = new JSpinner.DateEditor(spinnerDos, "HH:mm:ss");
         spinnerDos.setEditor(dateEditor1);
         labelDos1 = new JLabel("2.- Hora de fin de la jornada :");
@@ -137,10 +139,11 @@ public class DatosHorarioContentPanel extends JPanel {
             System.out.println("Las observaciones :"+ indexer);
 
             int position = 0;
+            Date date = new Date();
             // Add labels and text fields
             for(int i = 0; i < indexer; i++)
             {
-                Date date = new Date();
+
                 SpinnerDateModel spinnerDateModel = new SpinnerDateModel(date, null, null, Calendar.HOUR_OF_DAY);
 
                 JLabel label = new JLabel( (i+1) + ". Hora inicio:");
@@ -160,8 +163,10 @@ public class DatosHorarioContentPanel extends JPanel {
                 listOfLabels.add(label2);
                 panel.add(label2);
 
-                JSpinner spinner2 = new JSpinner(spinnerDateModel);
-                JSpinner.DateEditor dateEditor2 = new JSpinner.DateEditor(spinner, "HH:mm:ss");
+                SpinnerDateModel spinnerDateModel2 = new SpinnerDateModel(date, null, null, Calendar.HOUR_OF_DAY);
+
+                JSpinner spinner2 = new JSpinner(spinnerDateModel2);
+                JSpinner.DateEditor dateEditor2 = new JSpinner.DateEditor(spinner2, "HH:mm:ss");
                 spinner2.setEditor(dateEditor2);
                 spinner2.setBounds(200, 0+position, 70, 25);
                 listOfJSpinner.add(spinner2);
