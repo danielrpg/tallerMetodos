@@ -43,6 +43,14 @@ public class DatosHorarioContentPanel extends JPanel {
     static List<JSpinner> listOfTextFields = new ArrayList<JSpinner>();
     static List<JSpinner> listOfJSpinner = new ArrayList<JSpinner>();
 
+    private JLabel labelTitle4;
+    static JTextField text4;
+    private JLabel labelTitle5;
+    static JTextField text5;
+    private JLabel labelTitle6;
+    static JTextField texts;
+    private JButton generarTabla;
+
     public DatosHorarioContentPanel(){
         super();
         this.setLayout(null);
@@ -99,6 +107,9 @@ public class DatosHorarioContentPanel extends JPanel {
         jScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         jScrollPane.setBounds(3, 190, 295, 200);
 
+        labelTitle4 = new JLabel("4.- Num");
+        labelTitle4.setBounds(10, 400, 185, 20);
+
 
         this.add(labelUno1);
         this.add(spinner);
@@ -113,6 +124,8 @@ public class DatosHorarioContentPanel extends JPanel {
         this.add(textTres);
         this.add(btnNumObs);
         this.add(jScrollPane);
+
+        this.add(labelTitle4);
     }
 
     static class ObservationListener implements ActionListener{
