@@ -50,7 +50,7 @@ public class DatosHorarioContentPanel extends JPanel {
     private JLabel labelTitle5;
     static JTextField text5;
     private JLabel labelTitle6;
-    static JTextField texts;
+    static JTextField text6;
     private JButton generarTabla;
 
     public DatosHorarioContentPanel(){
@@ -61,7 +61,7 @@ public class DatosHorarioContentPanel extends JPanel {
         createFormData();
         this.setBorder(BorderFactory.createTitledBorder("DATOS DEL HORARIO"));
        // this.setBackground(Color.WHITE);
-        this.setPreferredSize(new Dimension(300, 100));
+        this.setPreferredSize(new Dimension(330, 100));
     }
 
     private void createFormData(){
@@ -109,9 +109,25 @@ public class DatosHorarioContentPanel extends JPanel {
         jScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         jScrollPane.setBounds(3, 190, 295, 200);
 
-        labelTitle4 = new JLabel("4.- Num");
-        labelTitle4.setBounds(10, 400, 185, 20);
+        labelTitle4 = new JLabel("4.- Numero de observaciones requeridas por dia:");
+        labelTitle4.setBounds(10, 400, 300, 20);
+        text4 = new JTextField();
+        text4.setBounds(10, 430, 100, 25);
 
+        labelTitle5 = new JLabel("5.- Nombre del Analista: ");
+        labelTitle5.setBounds(10, 455, 250, 25);
+        text5 = new JTextField();
+        text5.setBounds(10, 480, 200, 25);
+
+        labelTitle6 = new JLabel("6.- Puesto o etapa del Analista: ");
+        labelTitle6.setBounds(10, 510, 250, 25);
+        text6 = new JTextField();
+        text6.setBounds(10, 540, 200, 25);
+
+        generarTabla = new JButton("Generar Horario");
+        generarTabla.setBounds(20, 570, 250, 35);
+        generarTabla.setIcon(UIUtility.getImageSizeIcon("./src/assets/clock2.png", 30, 30));
+        generarTabla.addActionListener(new CronogramaListener());
 
         this.add(labelUno1);
         this.add(spinner);
@@ -128,7 +144,25 @@ public class DatosHorarioContentPanel extends JPanel {
         this.add(jScrollPane);
 
         this.add(labelTitle4);
+        this.add(text4);
+
+        this.add(labelTitle5);
+        this.add(text5);
+
+        this.add(labelTitle6);
+        this.add(text6);
+
+        this.add(generarTabla);
     }
+
+    static class CronogramaListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("generando el cronograma!!");
+        }
+    }
+
 
     static class ObservationListener implements ActionListener{
 
