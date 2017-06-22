@@ -1,6 +1,7 @@
 package uinterface;
 
 import common.UIUtility;
+import controller.CronogramaController;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -23,7 +24,7 @@ public class DatosHorarioContentPanel extends JPanel {
     private JLabel labelUno2;
     private Date date;
     private SpinnerDateModel spinnerDateModel;
-    private JSpinner spinner;
+    static JSpinner spinner;
     private JTextField textUbo;
 
 
@@ -31,7 +32,7 @@ public class DatosHorarioContentPanel extends JPanel {
     private JLabel labelDos1;
     private JLabel labelDos2;
     private JTextField textDos;
-    private JSpinner spinnerDos;
+    static JSpinner spinnerDos;
 
     private JLabel labelTres1;
     private JLabel labelTres11;
@@ -42,8 +43,8 @@ public class DatosHorarioContentPanel extends JPanel {
 
     static JPanel panel = new JPanel();
     static List<JLabel> listOfLabels = new ArrayList<JLabel>();
-    static List<JSpinner> listOfTextFields = new ArrayList<JSpinner>();
     static List<JSpinner> listOfJSpinner = new ArrayList<JSpinner>();
+    static List<JSpinner> listOfJSpinner2 = new ArrayList<JSpinner>();
 
     private JLabel labelTitle4;
     static JTextField text4;
@@ -52,6 +53,8 @@ public class DatosHorarioContentPanel extends JPanel {
     private JLabel labelTitle6;
     static JTextField text6;
     private JButton generarTabla;
+
+    static CronogramaController cronogramaController;
 
     public DatosHorarioContentPanel(){
         super();
@@ -173,8 +176,10 @@ public class DatosHorarioContentPanel extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("generando el cronograma!!");
-
+            Date datoSpinnerInicio = (Date) spinner.getValue();
+            Date datoSpinnerFin  = (Date) spinnerDos.getValue();
+            cronogramaController = new CronogramaController();
+            cronogramaController.generarCronograma(datoSpinnerInicio, datoSpinnerFin, listOfJSpinner, listOfJSpinner2);
         }
     }
 
@@ -211,7 +216,7 @@ public class DatosHorarioContentPanel extends JPanel {
                 spinner.setEditor(dateEditor);
                 spinner.setBounds(80, 5+position, 70, 25);
                 spinner.setFont(UIUtility.getInstance().setFontLabel());
-                listOfTextFields.add(spinner);
+                listOfJSpinner.add(spinner);
                 panel.add(spinner);
 
                 JLabel label2 = new JLabel("Hora fin:");
@@ -227,7 +232,7 @@ public class DatosHorarioContentPanel extends JPanel {
                 spinner2.setEditor(dateEditor2);
                 spinner2.setBounds(200, 5+position, 70, 25);
                 spinner2.setFont(UIUtility.getInstance().setFontLabel());
-                listOfJSpinner.add(spinner2);
+                listOfJSpinner2.add(spinner2);
                 panel.add(spinner2);
 
                 position = position + 28;
