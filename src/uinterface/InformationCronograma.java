@@ -1,10 +1,13 @@
 package uinterface;
 
+import model.ObservacionModel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
+import java.util.*;
 
 /**
  * @author dany
@@ -13,15 +16,20 @@ public class InformationCronograma extends JPanel implements Printable{
 
     private JLabel lbTitle;
     private ObservacionTable observacionTable;
+    private CronogramaFormulario cronogramaFormulario;
 
     public InformationCronograma(){
         super();
         this.setLayout(new BorderLayout());
-        lbTitle = new JLabel("CRONOGRAMA DE OBSERVACION");
-        observacionTable = new ObservacionTable();
+        this.setBorder(BorderFactory.createTitledBorder("CRONOGRAMA DE OBSERVACION"));
+        ObservacionModel observacionModel = new ObservacionModel(1, "8:25", "x", "");
+        java.util.List<ObservacionModel> list = new ArrayList<ObservacionModel>();
+        list.add(observacionModel);
+        observacionTable = new ObservacionTable(list);
+        JTable table = new JTable(observacionTable);
 
-        this.add(lbTitle, BorderLayout.NORTH);
-        this.add(observacionTable, BorderLayout.CENTER);
+        this.add(new JScrollPane(table), BorderLayout.CENTER);
+        this.add(new CronogramaFormulario(), BorderLayout.NORTH);
     }
 
     @Override

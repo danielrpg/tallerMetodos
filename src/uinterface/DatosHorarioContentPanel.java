@@ -56,8 +56,6 @@ public class DatosHorarioContentPanel extends JPanel {
     public DatosHorarioContentPanel(){
         super();
         this.setLayout(null);
-
-
         createFormData();
         this.setBorder(BorderFactory.createTitledBorder("DATOS DEL HORARIO"));
        // this.setBackground(Color.WHITE);
@@ -89,43 +87,43 @@ public class DatosHorarioContentPanel extends JPanel {
         labelDos2 = new JLabel("pm.");
         labelDos2.setBounds(275, 60, 50, 20);
 
-        labelTres1 = new JLabel("3.- Numero de periodos en que se puede realizar ");
+        labelTres1 = new JLabel("3.- Numero de periodos en que no se puede realizar ");
         labelTres1.setBounds(10, 90, 300, 20);
         labelTres11 = new JLabel("observaciones : ");
         labelTres11.setBounds(30, 120, 100, 20);
         textTres = new JTextField();
         textTres.setBounds(130, 120, 80, 25);
-        btnNumObs = new JButton("Calcular Observaciones");
-        btnNumObs.setBounds(40, 150, 220, 35);
+        btnNumObs = new JButton("Calcular Numero");
+        btnNumObs.setBounds(10, 150, 220, 35);
         btnNumObs.setIcon(UIUtility.getImageSizeIcon("./src/assets/clock2.png", 30, 30));
         btnNumObs.addActionListener(new ObservationListener());
 
 
         panel.setLayout(null);
       //  panel.setBorder(LineBorder.createBlackLineBorder());
-        panel.setPreferredSize(new Dimension(295, 200));
+        panel.setPreferredSize(new Dimension(305, 180));
         JScrollPane jScrollPane = new JScrollPane(panel);
       //  jScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         jScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        jScrollPane.setBounds(3, 190, 295, 200);
+        jScrollPane.setBounds(3, 190, 310, 180);
 
         labelTitle4 = new JLabel("4.- Numero de observaciones requeridas por dia:");
-        labelTitle4.setBounds(10, 400, 300, 20);
+        labelTitle4.setBounds(10, 370, 300, 20);
         text4 = new JTextField();
-        text4.setBounds(10, 430, 100, 25);
+        text4.setBounds(10, 400, 100, 25);
 
         labelTitle5 = new JLabel("5.- Nombre del Analista: ");
-        labelTitle5.setBounds(10, 455, 250, 25);
+        labelTitle5.setBounds(10, 430, 150, 25);
         text5 = new JTextField();
-        text5.setBounds(10, 480, 200, 25);
+        text5.setBounds(150, 430, 150, 25);
 
         labelTitle6 = new JLabel("6.- Puesto o etapa del Analista: ");
-        labelTitle6.setBounds(10, 510, 250, 25);
+        labelTitle6.setBounds(10, 460, 180, 25);
         text6 = new JTextField();
-        text6.setBounds(10, 540, 200, 25);
+        text6.setBounds(190, 460, 130, 25);
 
-        generarTabla = new JButton("Generar Horario");
-        generarTabla.setBounds(20, 570, 250, 35);
+        generarTabla = new JButton("Generar Cronograma");
+        generarTabla.setBounds(10, 490, 220, 35);
         generarTabla.setIcon(UIUtility.getImageSizeIcon("./src/assets/clock2.png", 30, 30));
         generarTabla.addActionListener(new CronogramaListener());
 
@@ -181,19 +179,19 @@ public class DatosHorarioContentPanel extends JPanel {
                 SpinnerDateModel spinnerDateModel = new SpinnerDateModel(date, null, null, Calendar.HOUR_OF_DAY);
 
                 JLabel label = new JLabel( (i+1) + ". Hora inicio:");
-                label.setBounds(3, 0+position, 80, 25);
+                label.setBounds(3, 5+position, 80, 25);
                 listOfLabels.add(label);
                 panel.add(label);
 
                 JSpinner spinner = new JSpinner(spinnerDateModel);
                 JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(spinner, "HH:mm:ss");
                 spinner.setEditor(dateEditor);
-                spinner.setBounds(80, 0+position, 70, 25);
+                spinner.setBounds(80, 5+position, 70, 25);
                 listOfTextFields.add(spinner);
                 panel.add(spinner);
 
                 JLabel label2 = new JLabel("Hora fin:");
-                label2.setBounds(155, 0+position, 80, 25);
+                label2.setBounds(155, 5+position, 80, 25);
                 listOfLabels.add(label2);
                 panel.add(label2);
 
@@ -202,7 +200,7 @@ public class DatosHorarioContentPanel extends JPanel {
                 JSpinner spinner2 = new JSpinner(spinnerDateModel2);
                 JSpinner.DateEditor dateEditor2 = new JSpinner.DateEditor(spinner2, "HH:mm:ss");
                 spinner2.setEditor(dateEditor2);
-                spinner2.setBounds(200, 0+position, 70, 25);
+                spinner2.setBounds(200, 5+position, 70, 25);
                 listOfJSpinner.add(spinner2);
                 panel.add(spinner2);
 

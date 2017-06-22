@@ -1,51 +1,67 @@
 package uinterface;
 
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
+import model.ObservacionModel;
+
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableModel;
+import java.util.List;
 
 /**
  * @author dany
  */
-public class ObservacionTable extends JTable {
+public class ObservacionTable extends AbstractTableModel {
 
-    private Object[][] rowDatas;
-    private Object[] columnNames;
+    private final List<ObservacionModel> tableModelList;
 
-    private DefaultTableModel model;
+    private final String[] columnNames = new String[]{
+        "Observación", "Horas", "Parada", "Funcionando"
+    };
 
-    public ObservacionTable(){
-        columnNames = new Object[]{"Observación", "Horas", "Parada", "Funcionado"};
-        model = new DefaultTableModel(0, 0);
-        model.setColumnIdentifiers(columnNames);
-        this.setModel(model);
-    }
+    private final Class[] columnClass = new Class[]{
+        Integer.class, String.class, String.class, String.class
+    };
 
-    public void addRowData(DefaultTableModel newModel, Object[] data){
-        newModel.addRow(data);
-    }
-
-    public Object[][] getRowDatas() {
-        return rowDatas;
-    }
-
-    public void setRowDatas(Object[][] rowDatas) {
-        this.rowDatas = rowDatas;
-    }
-
-    public Object[] getColumnNames() {
-        return columnNames;
-    }
-
-    public void setColumnNames(Object[] columnNames) {
-        this.columnNames = columnNames;
+    public ObservacionTable(List<ObservacionModel> tableModelList) {
+        this.tableModelList = tableModelList;
     }
 
     @Override
-    public DefaultTableModel getModel() {
-        return model;
+    public String getColumnName(int column)
+    {
+        return columnNames[column];
     }
 
-    public void setModel(DefaultTableModel model) {
-        this.model = model;
+    @Override
+    public Class<?> getColumnClass(int columnIndex)
+    {
+        return columnClass[columnIndex];
+    }
+
+    @Override
+    public int getRowCount() {
+        return tableModelList.size();
+    }
+
+    @Override
+    public int getColumnCount() {
+        return columnNames.length;
+    }
+
+    @Override
+    public Object getValueAt(int rowIndex, int columnIndex) {
+        ObservacionModel row = tableModelList.get(rowIndex);
+        if(0 == columnIndex){
+            return row.getObservacion();
+        }
+        else if(1 == columnIndex){
+            return row.getHora();
+        }
+        else if(2 == columnIndex){
+            return row.getParada();
+        }
+        else if(3 == columnIndex){
+            return row.getFunctionando();
+        }
+        return null;
     }
 }

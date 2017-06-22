@@ -1,9 +1,12 @@
 package uinterface;
 
 import common.Constants;
+import model.ObservacionModel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author dany
@@ -11,6 +14,7 @@ import java.awt.*;
 public class ObservacionAzarUI extends JFrame{
 
     private MainMenuBar mainMenuBar;
+
 
     public ObservacionAzarUI(){
         super();
@@ -22,7 +26,7 @@ public class ObservacionAzarUI extends JFrame{
         this.setLayout(new BorderLayout());
         this.setLocation(0, 0);
         //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        this.setPreferredSize(new Dimension(1024, 800));
+        this.setPreferredSize(new Dimension(1024, 750));
         this.pack();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
@@ -38,6 +42,7 @@ public class ObservacionAzarUI extends JFrame{
         this.add(new TitleContentPanel(), BorderLayout.NORTH);
         this.add(new DatosHorarioContentPanel(), BorderLayout.WEST);
         this.add(new InformationCronograma(), BorderLayout.CENTER);
-       // this.add(new DatosHorarioContentPanel(), BorderLayout.EAST);
+        this.add(new ImprimirPanel(), BorderLayout.SOUTH);
+        //this.add(new DatosHorarioContentPanel(), BorderLayout.EAST);
     }
 }
