@@ -2,6 +2,10 @@ package common;
 
 import javax.swing.*;
 import java.awt.*;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * @author dany
@@ -38,6 +42,13 @@ public class UIUtility {
 
     public  Font setFontLabel(){
         return new Font("Arial", Font.BOLD, 11);
+    }
+
+    public String getCurrentDate(){
+        Calendar calendar = GregorianCalendar.getInstance();
+        Date fecha = calendar.getTime();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        return simpleDateFormat.format(fecha);
     }
 
 }

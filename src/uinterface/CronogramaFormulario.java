@@ -1,5 +1,7 @@
 package uinterface;
 
+import common.UIUtility;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Calendar;
@@ -35,7 +37,7 @@ public class CronogramaFormulario extends JPanel {
 
         titleFecha = new JLabel("FECHA:");
         titleFecha.setBounds(10, 75, 100, 25);
-        valueFecha = new JLabel(Calendar.getInstance().getTime().toString());
+        valueFecha = new JLabel(UIUtility.getInstance().getCurrentDate());
         valueFecha.setBounds(150, 75, 300, 25);
 
         titlePuesto = new JLabel("PUESTO:");

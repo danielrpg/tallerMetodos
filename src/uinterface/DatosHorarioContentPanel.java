@@ -66,7 +66,7 @@ public class DatosHorarioContentPanel extends JPanel {
         spinnerDateModel = new SpinnerDateModel(date, null, null, Calendar.HOUR_OF_DAY);
 
         spinner = new JSpinner(spinnerDateModel);
-        JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(spinner, "HH:mm:ss");
+        JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(spinner, "HH:mm");
         spinner.setEditor(dateEditor);
         labelUno1 = new JLabel("1.- Hra. de inicio jornada:");
         labelUno1.setFont(UIUtility.getInstance().setFontLabel());
@@ -79,7 +79,7 @@ public class DatosHorarioContentPanel extends JPanel {
 
         spinnerDateModelDos = new SpinnerDateModel(date, null, null, Calendar.HOUR_OF_DAY);
         spinnerDos = new JSpinner(spinnerDateModelDos);
-        JSpinner.DateEditor dateEditor1 = new JSpinner.DateEditor(spinnerDos, "HH:mm:ss");
+        JSpinner.DateEditor dateEditor1 = new JSpinner.DateEditor(spinnerDos, "HH:mm");
         spinnerDos.setEditor(dateEditor1);
         spinnerDos.setFont(UIUtility.getInstance().setFontLabel());
         labelDos1 = new JLabel("2.- Hra. de fin jornada:");
@@ -207,7 +207,7 @@ public class DatosHorarioContentPanel extends JPanel {
                 panel.add(label);
 
                 JSpinner spinner = new JSpinner(spinnerDateModel);
-                JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(spinner, "HH:mm:ss");
+                JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(spinner, "HH:mm");
                 spinner.setEditor(dateEditor);
                 spinner.setBounds(80, 5+position, 70, 25);
                 spinner.setFont(UIUtility.getInstance().setFontLabel());
@@ -223,7 +223,7 @@ public class DatosHorarioContentPanel extends JPanel {
                 SpinnerDateModel spinnerDateModel2 = new SpinnerDateModel(date, null, null, Calendar.HOUR_OF_DAY);
 
                 JSpinner spinner2 = new JSpinner(spinnerDateModel2);
-                JSpinner.DateEditor dateEditor2 = new JSpinner.DateEditor(spinner2, "HH:mm:ss");
+                JSpinner.DateEditor dateEditor2 = new JSpinner.DateEditor(spinner2, "HH:mm");
                 spinner2.setEditor(dateEditor2);
                 spinner2.setBounds(200, 5+position, 70, 25);
                 spinner2.setFont(UIUtility.getInstance().setFontLabel());
