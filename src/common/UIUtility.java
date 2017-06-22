@@ -36,4 +36,8 @@ public class UIUtility {
         return new ImageIcon(newImage);
     }
 
+    public  Font setFontLabel(){
+        return new Font("Arial", Font.BOLD, 11);
+    }
+
 }

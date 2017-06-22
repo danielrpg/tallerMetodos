@@ -18,7 +18,7 @@ public class TitleContentPanel extends JPanel {
     public TitleContentPanel(){
         super();
         mainTitle = new JLabel(Constants.MAIN_JPANEL);
-        mainTitle.setFont(new Font("Courier New", Font.ITALIC, 28));
+        mainTitle.setFont(new Font("Arial", Font.BOLD, 28));
 
         imageCalendar = new JLabel();
         imageCalendar.setIcon(UIUtility.getImageIcon("./src/assets/calenda1.png"));

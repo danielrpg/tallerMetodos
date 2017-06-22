@@ -2,6 +2,8 @@ package uinterface;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * @author dany
@@ -20,9 +22,18 @@ public class ImprimirPanel extends JPanel {
 
         salir = new JButton("Salir");
         salir.setBounds(850, 5, 100, 30);
+        salir.addActionListener(new SalirListener());
 
         add(imprimir);
         add(salir);
+    }
+
+    static class SalirListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.exit(0); //Salir del sistema
+        }
     }
 
 }

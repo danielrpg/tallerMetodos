@@ -58,7 +58,6 @@ public class DatosHorarioContentPanel extends JPanel {
         this.setLayout(null);
         createFormData();
         this.setBorder(BorderFactory.createTitledBorder("DATOS DEL HORARIO"));
-       // this.setBackground(Color.WHITE);
         this.setPreferredSize(new Dimension(330, 100));
     }
 
@@ -69,32 +68,42 @@ public class DatosHorarioContentPanel extends JPanel {
         spinner = new JSpinner(spinnerDateModel);
         JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(spinner, "HH:mm:ss");
         spinner.setEditor(dateEditor);
-        labelUno1 = new JLabel("1.- Hora de inicio de la jornada :");
+        labelUno1 = new JLabel("1.- Hra. de inicio jornada:");
+        labelUno1.setFont(UIUtility.getInstance().setFontLabel());
         labelUno1.setBounds(10, 30, 185, 20);
         //textUbo = new JTextField();
         spinner.setBounds(190, 30, 80, 25);
         labelUno2 = new JLabel("am.");
+        labelUno2.setFont(UIUtility.getInstance().setFontLabel());
         labelUno2.setBounds(275, 30, 50, 20);
 
         spinnerDateModelDos = new SpinnerDateModel(date, null, null, Calendar.HOUR_OF_DAY);
         spinnerDos = new JSpinner(spinnerDateModelDos);
         JSpinner.DateEditor dateEditor1 = new JSpinner.DateEditor(spinnerDos, "HH:mm:ss");
         spinnerDos.setEditor(dateEditor1);
-        labelDos1 = new JLabel("2.- Hora de fin de la jornada :");
+        spinnerDos.setFont(UIUtility.getInstance().setFontLabel());
+        labelDos1 = new JLabel("2.- Hra. de fin jornada:");
         labelDos1.setBounds(10, 60, 185, 20);
+        labelDos1.setFont(UIUtility.getInstance().setFontLabel());
         //textDos = new JTextField();
         spinnerDos.setBounds(190, 60, 80, 25);
+        spinnerDos.setFont(UIUtility.getInstance().setFontLabel());
         labelDos2 = new JLabel("pm.");
+        labelDos2.setFont(UIUtility.getInstance().setFontLabel());
         labelDos2.setBounds(275, 60, 50, 20);
 
         labelTres1 = new JLabel("3.- Numero de periodos en que no se puede realizar ");
         labelTres1.setBounds(10, 90, 300, 20);
+        labelTres1.setFont(UIUtility.getInstance().setFontLabel());
         labelTres11 = new JLabel("observaciones : ");
         labelTres11.setBounds(30, 120, 100, 20);
+        labelTres11.setFont(UIUtility.getInstance().setFontLabel());
         textTres = new JTextField();
         textTres.setBounds(130, 120, 80, 25);
+        textTres.setFont(UIUtility.getInstance().setFontLabel());
         btnNumObs = new JButton("Calcular Numero");
         btnNumObs.setBounds(10, 150, 220, 35);
+        btnNumObs.setFont(UIUtility.getInstance().setFontLabel());
         btnNumObs.setIcon(UIUtility.getImageSizeIcon("./src/assets/clock2.png", 30, 30));
         btnNumObs.addActionListener(new ObservationListener());
 
@@ -109,21 +118,28 @@ public class DatosHorarioContentPanel extends JPanel {
 
         labelTitle4 = new JLabel("4.- Numero de observaciones requeridas por dia:");
         labelTitle4.setBounds(10, 370, 300, 20);
+        labelTitle4.setFont(UIUtility.getInstance().setFontLabel());
         text4 = new JTextField();
         text4.setBounds(10, 400, 100, 25);
+        text4.setFont(UIUtility.getInstance().setFontLabel());
 
         labelTitle5 = new JLabel("5.- Nombre del Analista: ");
         labelTitle5.setBounds(10, 430, 150, 25);
+        labelTitle5.setFont(UIUtility.getInstance().setFontLabel());
         text5 = new JTextField();
         text5.setBounds(150, 430, 150, 25);
+        text5.setFont(UIUtility.getInstance().setFontLabel());
 
         labelTitle6 = new JLabel("6.- Puesto o etapa del Analista: ");
         labelTitle6.setBounds(10, 460, 180, 25);
+        labelTitle6.setFont(UIUtility.getInstance().setFontLabel());
         text6 = new JTextField();
         text6.setBounds(190, 460, 130, 25);
+        text6.setFont(UIUtility.getInstance().setFontLabel());
 
         generarTabla = new JButton("Generar Cronograma");
         generarTabla.setBounds(10, 490, 220, 35);
+        generarTabla.setFont(UIUtility.getInstance().setFontLabel());
         generarTabla.setIcon(UIUtility.getImageSizeIcon("./src/assets/clock2.png", 30, 30));
         generarTabla.addActionListener(new CronogramaListener());
 
@@ -158,6 +174,7 @@ public class DatosHorarioContentPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("generando el cronograma!!");
+
         }
     }
 
@@ -167,8 +184,13 @@ public class DatosHorarioContentPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             panel.removeAll();
-            Integer indexer = Integer.parseInt(textTres.getText());
-            System.out.println("Las observaciones :"+ indexer);
+            Integer indexer = 0;
+            try {
+                indexer = Integer.parseInt(textTres.getText());
+            }catch (NumberFormatException nunEx){
+                JOptionPane.showMessageDialog(null, "Ingrese un valor entero valido",
+                        "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+            }
 
             int position = 0;
             Date date = new Date();
@@ -180,6 +202,7 @@ public class DatosHorarioContentPanel extends JPanel {
 
                 JLabel label = new JLabel( (i+1) + ". Hora inicio:");
                 label.setBounds(3, 5+position, 80, 25);
+                label.setFont(UIUtility.getInstance().setFontLabel());
                 listOfLabels.add(label);
                 panel.add(label);
 
@@ -187,11 +210,13 @@ public class DatosHorarioContentPanel extends JPanel {
                 JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(spinner, "HH:mm:ss");
                 spinner.setEditor(dateEditor);
                 spinner.setBounds(80, 5+position, 70, 25);
+                spinner.setFont(UIUtility.getInstance().setFontLabel());
                 listOfTextFields.add(spinner);
                 panel.add(spinner);
 
                 JLabel label2 = new JLabel("Hora fin:");
                 label2.setBounds(155, 5+position, 80, 25);
+                label2.setFont(UIUtility.getInstance().setFontLabel());
                 listOfLabels.add(label2);
                 panel.add(label2);
 
@@ -201,6 +226,7 @@ public class DatosHorarioContentPanel extends JPanel {
                 JSpinner.DateEditor dateEditor2 = new JSpinner.DateEditor(spinner2, "HH:mm:ss");
                 spinner2.setEditor(dateEditor2);
                 spinner2.setBounds(200, 5+position, 70, 25);
+                spinner2.setFont(UIUtility.getInstance().setFontLabel());
                 listOfJSpinner.add(spinner2);
                 panel.add(spinner2);
 
