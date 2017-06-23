@@ -17,6 +17,10 @@ public class ObservacionModel {
         this.functionando = functionando;
     }
 
+    public ObservacionModel(){
+
+    }
+
     public Integer getObservacion() {
         return observacion;
     }

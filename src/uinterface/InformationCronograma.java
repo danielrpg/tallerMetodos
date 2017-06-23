@@ -18,11 +18,12 @@ public class InformationCronograma extends JPanel implements Printable{
     private ObservacionTable observacionTable;
     private CronogramaFormulario cronogramaFormulario;
 
+
     public InformationCronograma(){
         super();
         this.setLayout(new BorderLayout());
         this.setBorder(BorderFactory.createTitledBorder("CRONOGRAMA DE OBSERVACION"));
-        ObservacionModel observacionModel = new ObservacionModel(1, "8:25", "x", "");
+        ObservacionModel observacionModel = new ObservacionModel();
         java.util.List<ObservacionModel> list = new ArrayList<ObservacionModel>();
         list.add(observacionModel);
         observacionTable = new ObservacionTable(list);
@@ -42,5 +43,13 @@ public class InformationCronograma extends JPanel implements Printable{
         g2d.scale(0.50,0.50); //Reducción de la impresión al 50%
        //jPanel1.printAll(graphics);
         return PAGE_EXISTS;
+    }
+
+    public ObservacionTable getObservacionTable() {
+        return observacionTable;
+    }
+
+    public void setObservacionTable(ObservacionTable observacionTable) {
+        this.observacionTable = observacionTable;
     }
 }

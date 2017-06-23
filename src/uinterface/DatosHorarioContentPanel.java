@@ -54,7 +54,7 @@ public class DatosHorarioContentPanel extends JPanel {
     static JTextField text6;
     private JButton generarTabla;
 
-    static CronogramaController cronogramaController;
+
 
     public DatosHorarioContentPanel(){
         super();
@@ -178,8 +178,22 @@ public class DatosHorarioContentPanel extends JPanel {
         public void actionPerformed(ActionEvent e) {
             Date datoSpinnerInicio = (Date) spinner.getValue();
             Date datoSpinnerFin  = (Date) spinnerDos.getValue();
-            cronogramaController = new CronogramaController();
-            cronogramaController.generarCronograma(datoSpinnerInicio, datoSpinnerFin, listOfJSpinner, listOfJSpinner2);
+            Integer numeroObservaciones = 0;
+            try {
+                numeroObservaciones = Integer.parseInt(text4.getText());
+            }catch (NumberFormatException numEx){
+                JOptionPane.showMessageDialog(null, "Ingrese un valor entero valido para las observaciones",
+                        "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+            }
+
+
+            Integer nroNoObservaciones = Integer.parseInt(textTres.getText());
+            if(nroNoObservaciones != 0){
+                cronogramaController.generarCronograma(datoSpinnerInicio, datoSpinnerFin, listOfJSpinner, listOfJSpinner2, numeroObservaciones);
+            }else{
+                cronogramaController.generarCronograma(datoSpinnerInicio, datoSpinnerFin, numeroObservaciones);
+            }
+
         }
     }
 
@@ -194,7 +208,7 @@ public class DatosHorarioContentPanel extends JPanel {
                 indexer = Integer.parseInt(textTres.getText());
             }catch (NumberFormatException nunEx){
                 JOptionPane.showMessageDialog(null, "Ingrese un valor entero valido",
-                        "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                        "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
             }
 
             int position = 0;

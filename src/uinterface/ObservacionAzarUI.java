@@ -1,6 +1,7 @@
 package uinterface;
 
 import common.Constants;
+import controller.CronogramaController;
 import model.ObservacionModel;
 
 import javax.swing.*;
@@ -14,6 +15,7 @@ import java.util.List;
 public class ObservacionAzarUI extends JFrame{
 
     private MainMenuBar mainMenuBar;
+    static CronogramaController cronogramaController;
 
 
     public ObservacionAzarUI(){
@@ -39,6 +41,7 @@ public class ObservacionAzarUI extends JFrame{
 
     private void createComponents(){
         this.setBackground(Color.WHITE);
+        this.cronogramaController = new CronogramaController();
         this.add(new TitleContentPanel(), BorderLayout.NORTH);
         this.add(new DatosHorarioContentPanel(), BorderLayout.WEST);
         this.add(new InformationCronograma(), BorderLayout.CENTER);

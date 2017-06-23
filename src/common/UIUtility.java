@@ -29,7 +29,7 @@ public class UIUtility {
     public  static ImageIcon getImageIcon(final String urlImage){
         ImageIcon imageIcon = new ImageIcon(urlImage);
         Image image = imageIcon.getImage();
-        Image newImage = image.getScaledInstance(120, 120, Image.SCALE_SMOOTH);
+        Image newImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         return new ImageIcon(newImage);
     }
 

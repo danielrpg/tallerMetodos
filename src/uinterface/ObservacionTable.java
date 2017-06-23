@@ -4,6 +4,7 @@ import model.ObservacionModel;
 
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,6 +24,11 @@ public class ObservacionTable extends AbstractTableModel {
 
     public ObservacionTable(List<ObservacionModel> tableModelList) {
         this.tableModelList = tableModelList;
+    }
+
+    public void addRow(ObservacionModel observacionModel){
+        this.tableModelList.add(observacionModel);
+        this.fireTableDataChanged();
     }
 
     @Override
