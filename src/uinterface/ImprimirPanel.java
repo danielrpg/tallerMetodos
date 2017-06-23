@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 
 /**
  * @author dany
@@ -12,13 +14,16 @@ public class ImprimirPanel extends JPanel {
 
     private JButton imprimir;
     private JButton salir;
+    static InformationCronograma informationCronograma;
 
-    public ImprimirPanel(){
+    public ImprimirPanel(InformationCronograma informationCronograma){
+        this.informationCronograma = informationCronograma;
         this.setLayout(null);
         this.setPreferredSize(new Dimension(1000, 50));
 
         imprimir = new JButton("Imprimir");
         imprimir.setBounds(700,5, 100, 30 );
+        imprimir.addActionListener(new ImprimirListener());
 
         salir = new JButton("Salir");
         salir.setBounds(850, 5, 100, 30);
@@ -26,6 +31,21 @@ public class ImprimirPanel extends JPanel {
 
         add(imprimir);
         add(salir);
+    }
+
+    static class ImprimirListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                PrinterJob job = PrinterJob.getPrinterJob();
+                job.setPrintable(informationCronograma);
+                job.printDialog();
+                job.print();
+            } catch (PrinterException ex) {
+
+            }
+        }
     }
 
     static class SalirListener implements ActionListener {

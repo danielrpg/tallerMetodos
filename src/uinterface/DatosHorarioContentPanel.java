@@ -54,10 +54,13 @@ public class DatosHorarioContentPanel extends JPanel {
     static JTextField text6;
     private JButton generarTabla;
 
+    static  CronogramaController cronogramaController;
 
 
-    public DatosHorarioContentPanel(){
+
+    public DatosHorarioContentPanel(CronogramaController cronogramaController){
         super();
+        this.cronogramaController = cronogramaController;
         this.setLayout(null);
         createFormData();
         this.setBorder(BorderFactory.createTitledBorder("DATOS DEL HORARIO"));
@@ -101,11 +104,11 @@ public class DatosHorarioContentPanel extends JPanel {
         labelTres11 = new JLabel("observaciones : ");
         labelTres11.setBounds(30, 120, 100, 20);
         labelTres11.setFont(UIUtility.getInstance().setFontLabel());
-        textTres = new JTextField();
+        textTres = new JTextField("0");
         textTres.setBounds(130, 120, 80, 25);
         textTres.setFont(UIUtility.getInstance().setFontLabel());
         btnNumObs = new JButton("Calcular Numero");
-        btnNumObs.setBounds(10, 150, 220, 35);
+        btnNumObs.setBounds(10, 150, 190, 35);
         btnNumObs.setFont(UIUtility.getInstance().setFontLabel());
         btnNumObs.setIcon(UIUtility.getImageSizeIcon("./src/assets/clock2.png", 30, 30));
         btnNumObs.addActionListener(new ObservationListener());
@@ -122,7 +125,7 @@ public class DatosHorarioContentPanel extends JPanel {
         labelTitle4 = new JLabel("4.- Numero de observaciones requeridas por dia:");
         labelTitle4.setBounds(10, 370, 300, 20);
         labelTitle4.setFont(UIUtility.getInstance().setFontLabel());
-        text4 = new JTextField();
+        text4 = new JTextField("0");
         text4.setBounds(10, 400, 100, 25);
         text4.setFont(UIUtility.getInstance().setFontLabel());
 
@@ -141,7 +144,7 @@ public class DatosHorarioContentPanel extends JPanel {
         text6.setFont(UIUtility.getInstance().setFontLabel());
 
         generarTabla = new JButton("Generar Cronograma");
-        generarTabla.setBounds(10, 490, 220, 35);
+        generarTabla.setBounds(10, 490, 190, 35);
         generarTabla.setFont(UIUtility.getInstance().setFontLabel());
         generarTabla.setIcon(UIUtility.getImageSizeIcon("./src/assets/clock2.png", 30, 30));
         generarTabla.addActionListener(new CronogramaListener());
@@ -186,13 +189,22 @@ public class DatosHorarioContentPanel extends JPanel {
                         "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
             }
 
+            Integer nroNoObservaciones = 0;
+            try{
+                nroNoObservaciones = Integer.parseInt(textTres.getText());
+            }catch (NumberFormatException nuEx){
+                JOptionPane.showMessageDialog(null, "Ingrese un valor entero para las no observaciones",
+                        "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+            }
 
-            Integer nroNoObservaciones = Integer.parseInt(textTres.getText());
             if(nroNoObservaciones != 0){
                 cronogramaController.generarCronograma(datoSpinnerInicio, datoSpinnerFin, listOfJSpinner, listOfJSpinner2, numeroObservaciones);
             }else{
                 cronogramaController.generarCronograma(datoSpinnerInicio, datoSpinnerFin, numeroObservaciones);
             }
+            String nombreAnalista = text5.getText();
+            String nombreEstacion = text6.getText();
+            cronogramaController.setDatosCabecera(nombreAnalista, nombreEstacion);
 
         }
     }

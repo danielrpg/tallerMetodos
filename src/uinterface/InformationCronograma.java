@@ -1,8 +1,10 @@
 package uinterface;
 
+import controller.CronogramaController;
 import model.ObservacionModel;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 import java.awt.print.PageFormat;
 import java.awt.print.Printable;
@@ -17,20 +19,28 @@ public class InformationCronograma extends JPanel implements Printable{
     private JLabel lbTitle;
     private ObservacionTable observacionTable;
     private CronogramaFormulario cronogramaFormulario;
+    private CronogramaController cronogramaController;
 
 
-    public InformationCronograma(){
+    public InformationCronograma(CronogramaController cronogramaController){
         super();
+        this.cronogramaController = cronogramaController;
         this.setLayout(new BorderLayout());
         this.setBorder(BorderFactory.createTitledBorder("CRONOGRAMA DE OBSERVACION"));
         ObservacionModel observacionModel = new ObservacionModel();
-        java.util.List<ObservacionModel> list = new ArrayList<ObservacionModel>();
-        list.add(observacionModel);
-        observacionTable = new ObservacionTable(list);
+        /*java.util.List<ObservacionModel> list = new ArrayList<ObservacionModel>();
+        list.add(observacionModel);*/
+        observacionTable = new ObservacionTable();
+
+        this.cronogramaController.setObservacionTabla(observacionTable);
         JTable table = new JTable(observacionTable);
+        DefaultTableCellRenderer defaultTableCellRenderer = new DefaultTableCellRenderer();
+        defaultTableCellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        table.getColumnModel().getColumn(0).setCellRenderer(defaultTableCellRenderer);
+        table.getColumnModel().getColumn(1).setCellRenderer(defaultTableCellRenderer);
 
         this.add(new JScrollPane(table), BorderLayout.CENTER);
-        this.add(new CronogramaFormulario(), BorderLayout.NORTH);
+        this.add(new CronogramaFormulario(cronogramaController), BorderLayout.NORTH);
     }
 
     @Override

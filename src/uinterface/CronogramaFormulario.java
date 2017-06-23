@@ -1,6 +1,7 @@
 package uinterface;
 
 import common.UIUtility;
+import controller.CronogramaController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,7 +23,10 @@ public class CronogramaFormulario extends JPanel {
     private JLabel titlePuesto;
     private JLabel valuePuesto;
 
-    public CronogramaFormulario(){
+    CronogramaController cronogramaController;
+
+    public CronogramaFormulario(CronogramaController cronogramaController){
+        this.cronogramaController = cronogramaController;
         this.setLayout(null);
         this.setPreferredSize(new Dimension(330, 150));
 
@@ -44,6 +48,8 @@ public class CronogramaFormulario extends JPanel {
         titlePuesto.setBounds(10, 105, 100, 25);
         valuePuesto = new JLabel("Torno Automatico");
         valuePuesto.setBounds(150, 105, 300, 25);
+
+        this.cronogramaController.setCamposCabecera(valueAnalista, valuePuesto);
 
         add(mainTitle);
 

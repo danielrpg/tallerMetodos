@@ -22,12 +22,21 @@ public class ObservacionTable extends AbstractTableModel {
         Integer.class, String.class, String.class, String.class
     };
 
+    public ObservacionTable(){
+        this.tableModelList = new ArrayList<>();
+    }
+
     public ObservacionTable(List<ObservacionModel> tableModelList) {
         this.tableModelList = tableModelList;
     }
 
     public void addRow(ObservacionModel observacionModel){
         this.tableModelList.add(observacionModel);
+        this.fireTableDataChanged();
+    }
+
+    public void clearDataTableModel(){
+        this.tableModelList.clear();
         this.fireTableDataChanged();
     }
 

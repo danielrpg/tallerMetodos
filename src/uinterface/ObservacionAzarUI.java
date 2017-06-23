@@ -43,9 +43,10 @@ public class ObservacionAzarUI extends JFrame{
         this.setBackground(Color.WHITE);
         this.cronogramaController = new CronogramaController();
         this.add(new TitleContentPanel(), BorderLayout.NORTH);
-        this.add(new DatosHorarioContentPanel(), BorderLayout.WEST);
-        this.add(new InformationCronograma(), BorderLayout.CENTER);
-        this.add(new ImprimirPanel(), BorderLayout.SOUTH);
+        this.add(new DatosHorarioContentPanel(this.cronogramaController), BorderLayout.WEST);
+        InformationCronograma informationCronograma = new InformationCronograma(this.cronogramaController);
+        this.add(informationCronograma, BorderLayout.CENTER);
+        this.add(new ImprimirPanel(informationCronograma), BorderLayout.SOUTH);
         //this.add(new DatosHorarioContentPanel(), BorderLayout.EAST);
     }
 }
