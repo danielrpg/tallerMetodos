@@ -1,6 +1,7 @@
 package controller;
 
 import common.RandomTimeSeries;
+import common.UIUtility;
 import model.ObservacionModel;
 import uinterface.ObservacionTable;
 
@@ -29,11 +30,12 @@ public class CronogramaController {
         this.observacionTable.clearDataTableModel();
         Collections.sort(dateObservaciones);
         int index = 1;
-        for (Integer fecha: dateObservaciones) {
-            System.out.println("Fecha: "+ fecha);
+        for (Integer hora: dateObservaciones) {
+            String nuevaHora = UIUtility.getInstance().getHoraString(hora);
+            System.out.println("Fecha:"+ nuevaHora);
             //System.out.println("La hora generada: "+fecha.getHours()+":"+fecha.getMinutes());
-         /*   String hora = fecha.getHours()+":"+fecha.getMinutes();
-            this.observacionTable.addRow(new ObservacionModel(index, hora, "", ""));*/
+         /*   String hora = fecha.getHours()+":"+fecha.getMinutes();*/
+            this.observacionTable.addRow(new ObservacionModel(index, nuevaHora, "", ""));
             index++;
         }
     }
@@ -43,11 +45,12 @@ public class CronogramaController {
         this.observacionTable.clearDataTableModel();
         Collections.sort(dateObservaciones);
         int index = 1;
-        for (Integer fecha: dateObservaciones) {
-            System.out.println("Fecha: "+ fecha);
+        for (Integer hora: dateObservaciones) {
+            System.out.println("Fecha: "+ hora);
+            String nuevaHora  = UIUtility.getInstance().getHoraString(hora);
             //System.out.println("La hora generada: "+fecha.getHours()+":"+fecha.getMinutes());
-            /*String hora = fecha.getHours()+":"+fecha.getMinutes();
-            this.observacionTable.addRow(new ObservacionModel(index, hora, "", ""));*/
+            /*String hora = fecha.getHours()+":"+fecha.getMinutes();*/
+            this.observacionTable.addRow(new ObservacionModel(index, nuevaHora, "", ""));
             index++;
         }
     }

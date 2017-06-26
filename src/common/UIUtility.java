@@ -61,8 +61,16 @@ public class UIUtility {
 
     public String getHoraString(Integer hora){
         String cadenaHora = String.valueOf(hora);
-        Integer size = cadenaHora.length()
+        Integer size = cadenaHora.length();
+        char[] horaChart = cadenaHora.toCharArray();
+        String nuevaHora = "";
+        if(size <= 3){
+            nuevaHora = horaChart[size-3]+":"+horaChart[size-2]+""+horaChart[size-1];
+        }else if(size <=4){
+            nuevaHora = horaChart[size-3]+""+horaChart[size-3]+":"+horaChart[size-2]+""+horaChart[size-1];
+        }
 
+        return  nuevaHora;
     }
 
 }
