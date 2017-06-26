@@ -9,9 +9,9 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +32,7 @@ public class DatosHorarioContentPanel extends JPanel {
     private JLabel labelDos1;
     private JLabel labelDos2;
     private JTextField textDos;
+    private Date date2;
     static JSpinner spinnerDos;
 
     private JLabel labelTres1;
@@ -39,6 +40,7 @@ public class DatosHorarioContentPanel extends JPanel {
     private JLabel labelTres2;
     static JTextField textTres;
     private JButton btnNumObs;
+    private JButton limpiarRangos;
 
 
     static JPanel panel = new JPanel();
@@ -68,7 +70,10 @@ public class DatosHorarioContentPanel extends JPanel {
     }
 
     private void createFormData(){
-        date = new Date();
+        Date in1 = new Date();
+        LocalDateTime ldt = LocalDateTime.ofInstant(in1.toInstant(), ZoneId.systemDefault());
+        date = Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
+     //   System.out.println(date);
         spinnerDateModel = new SpinnerDateModel(date, null, null, Calendar.HOUR_OF_DAY);
 
         spinner = new JSpinner(spinnerDateModel);
@@ -83,7 +88,11 @@ public class DatosHorarioContentPanel extends JPanel {
         labelUno2.setFont(UIUtility.getInstance().setFontLabel());
         labelUno2.setBounds(275, 30, 50, 20);
 
-        spinnerDateModelDos = new SpinnerDateModel(date, null, null, Calendar.HOUR_OF_DAY);
+        Date in2 = new Date();
+        LocalDateTime ldt1 = LocalDateTime.ofInstant(in2.toInstant(), ZoneId.systemDefault());
+        date2 = Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
+        spinnerDateModelDos = new SpinnerDateModel(date2, null, null, Calendar.HOUR_OF_DAY);
+
         spinnerDos = new JSpinner(spinnerDateModelDos);
         JSpinner.DateEditor dateEditor1 = new JSpinner.DateEditor(spinnerDos, "HH:mm");
         spinnerDos.setEditor(dateEditor1);
@@ -104,7 +113,7 @@ public class DatosHorarioContentPanel extends JPanel {
         labelTres11 = new JLabel("observaciones : ");
         labelTres11.setBounds(30, 120, 100, 20);
         labelTres11.setFont(UIUtility.getInstance().setFontLabel());
-        textTres = new JTextField("0");
+        textTres = new JTextField("2");
         textTres.setBounds(130, 120, 80, 25);
         textTres.setFont(UIUtility.getInstance().setFontLabel());
         btnNumObs = new JButton("Calcular Numero");
@@ -112,6 +121,13 @@ public class DatosHorarioContentPanel extends JPanel {
         btnNumObs.setFont(UIUtility.getInstance().setFontLabel());
         btnNumObs.setIcon(UIUtility.getImageSizeIcon("./src/assets/clock2.png", 30, 30));
         btnNumObs.addActionListener(new ObservationListener());
+       // establecerDefaul();
+
+        limpiarRangos = new JButton();
+        limpiarRangos.setBounds(210, 150, 50, 35);
+        limpiarRangos.setFont(UIUtility.getInstance().setFontLabel());
+        limpiarRangos.setIcon(UIUtility.getImageSizeIcon("./src/assets/refresh.png", 30, 30));
+        limpiarRangos.addActionListener(new RefreshListener());
 
 
         panel.setLayout(null);
@@ -146,7 +162,7 @@ public class DatosHorarioContentPanel extends JPanel {
         generarTabla = new JButton("Generar Cronograma");
         generarTabla.setBounds(10, 490, 190, 35);
         generarTabla.setFont(UIUtility.getInstance().setFontLabel());
-        generarTabla.setIcon(UIUtility.getImageSizeIcon("./src/assets/clock2.png", 30, 30));
+        generarTabla.setIcon(UIUtility.getImageSizeIcon("./src/assets/clipboard.png", 30, 30));
         generarTabla.addActionListener(new CronogramaListener());
 
         this.add(labelUno1);
@@ -162,6 +178,7 @@ public class DatosHorarioContentPanel extends JPanel {
         this.add(textTres);
         this.add(btnNumObs);
         this.add(jScrollPane);
+        this.add(limpiarRangos);
 
         this.add(labelTitle4);
         this.add(text4);
@@ -175,12 +192,26 @@ public class DatosHorarioContentPanel extends JPanel {
         this.add(generarTabla);
     }
 
+
+
+
+    static class RefreshListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            panel.removeAll();
+            panel.updateUI();
+        }
+    }
+
     static class CronogramaListener implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {
             Date datoSpinnerInicio = (Date) spinner.getValue();
+            System.out.println(datoSpinnerInicio);
             Date datoSpinnerFin  = (Date) spinnerDos.getValue();
+            System.out.println(datoSpinnerFin);
             Integer numeroObservaciones = 0;
             try {
                 numeroObservaciones = Integer.parseInt(text4.getText());
@@ -214,6 +245,7 @@ public class DatosHorarioContentPanel extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+           // establecerDefaul();
             panel.removeAll();
             Integer indexer = 0;
             try {
@@ -224,11 +256,11 @@ public class DatosHorarioContentPanel extends JPanel {
             }
 
             int position = 0;
-            Date date = new Date();
+
             // Add labels and text fields
             for(int i = 0; i < indexer; i++)
             {
-
+                Date date = new Date();
                 SpinnerDateModel spinnerDateModel = new SpinnerDateModel(date, null, null, Calendar.HOUR_OF_DAY);
 
                 JLabel label = new JLabel( (i+1) + ". Hora inicio:");
@@ -251,12 +283,12 @@ public class DatosHorarioContentPanel extends JPanel {
                 listOfLabels.add(label2);
                 panel.add(label2);
 
-                SpinnerDateModel spinnerDateModel2 = new SpinnerDateModel(date, null, null, Calendar.HOUR_OF_DAY);
-
+                Date date2 = new Date();
+                SpinnerDateModel spinnerDateModel2 = new SpinnerDateModel(date2, null, null, Calendar.HOUR_OF_DAY);
                 JSpinner spinner2 = new JSpinner(spinnerDateModel2);
                 JSpinner.DateEditor dateEditor2 = new JSpinner.DateEditor(spinner2, "HH:mm");
                 spinner2.setEditor(dateEditor2);
-                spinner2.setBounds(200, 5+position, 70, 25);
+                spinner2.setBounds(205, 5+position, 70, 25);
                 spinner2.setFont(UIUtility.getInstance().setFontLabel());
                 listOfJSpinner2.add(spinner2);
                 panel.add(spinner2);

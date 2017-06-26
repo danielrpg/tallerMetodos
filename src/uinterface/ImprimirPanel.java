@@ -1,5 +1,7 @@
 package uinterface;
 
+import common.UIUtility;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -22,12 +24,14 @@ public class ImprimirPanel extends JPanel {
         this.setPreferredSize(new Dimension(1000, 50));
 
         imprimir = new JButton("Imprimir");
-        imprimir.setBounds(700,5, 100, 30 );
+        imprimir.setBounds(650,5, 150, 35 );
         imprimir.addActionListener(new ImprimirListener());
+        imprimir.setIcon(UIUtility.getInstance().getImageSizeIcon("./src/assets/printer.png", 30, 30));
 
         salir = new JButton("Salir");
-        salir.setBounds(850, 5, 100, 30);
+        salir.setBounds(850, 5, 150, 35);
         salir.addActionListener(new SalirListener());
+        salir.setIcon(UIUtility.getInstance().getImageSizeIcon("./src/assets/cancel.png", 30, 30));
 
         add(imprimir);
         add(salir);

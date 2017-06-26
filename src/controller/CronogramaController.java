@@ -25,27 +25,29 @@ public class CronogramaController {
     }
 
     public void generarCronograma(Date inicio, Date fin, List<JSpinner> listOfJSpinner, List<JSpinner> listOfJSpinner2, Integer numObservaciones){
-        List<Date> dateObservaciones = randomTimeSeries.generarObservaciones(inicio, fin, listOfJSpinner, listOfJSpinner2, numObservaciones);
+        List<Integer> dateObservaciones = randomTimeSeries.generarObservaciones(inicio, fin, listOfJSpinner, listOfJSpinner2, numObservaciones);
         this.observacionTable.clearDataTableModel();
         Collections.sort(dateObservaciones);
         int index = 1;
-        for (Date fecha: dateObservaciones) {
-            System.out.println("La hora generada: "+fecha.getHours()+":"+fecha.getMinutes());
-            String hora = fecha.getHours()+":"+fecha.getMinutes();
-            this.observacionTable.addRow(new ObservacionModel(index, hora, "", ""));
+        for (Integer fecha: dateObservaciones) {
+            System.out.println("Fecha: "+ fecha);
+            //System.out.println("La hora generada: "+fecha.getHours()+":"+fecha.getMinutes());
+         /*   String hora = fecha.getHours()+":"+fecha.getMinutes();
+            this.observacionTable.addRow(new ObservacionModel(index, hora, "", ""));*/
             index++;
         }
     }
 
     public void generarCronograma(Date inicio, Date fin, Integer numeroObservaciones){
-        List<Date> dateObservaciones = randomTimeSeries.randomTimeSeries(inicio, fin, numeroObservaciones);
+        List<Integer> dateObservaciones = randomTimeSeries.randomTimeSeries(inicio, fin, numeroObservaciones);
         this.observacionTable.clearDataTableModel();
         Collections.sort(dateObservaciones);
         int index = 1;
-        for (Date fecha: dateObservaciones) {
-            System.out.println("La hora generada: "+fecha.getHours()+":"+fecha.getMinutes());
-            String hora = fecha.getHours()+":"+fecha.getMinutes();
-            this.observacionTable.addRow(new ObservacionModel(index, hora, "", ""));
+        for (Integer fecha: dateObservaciones) {
+            System.out.println("Fecha: "+ fecha);
+            //System.out.println("La hora generada: "+fecha.getHours()+":"+fecha.getMinutes());
+            /*String hora = fecha.getHours()+":"+fecha.getMinutes();
+            this.observacionTable.addRow(new ObservacionModel(index, hora, "", ""));*/
             index++;
         }
     }

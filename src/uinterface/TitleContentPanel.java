@@ -21,7 +21,7 @@ public class TitleContentPanel extends JPanel {
         mainTitle.setFont(new Font("Arial", Font.BOLD, 28));
 
         imageCalendar = new JLabel();
-        imageCalendar.setIcon(UIUtility.getImageIcon("./src/assets/calenda1.png"));
+        imageCalendar.setIcon(UIUtility.getInstance().getImageSizeIcon("./src/assets/calendar.png", 100, 100));
 
 
         imageIngeniero = new JLabel();

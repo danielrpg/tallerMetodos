@@ -6,7 +6,7 @@ package common;
 public final class Constants {
 
     public static final String MAIN_TITLE  = "***** OBSERVACION AL AZAR *****";
-    public static final String MAIN_JPANEL = "Programa para las observaciones al azar";
+    public static final String MAIN_JPANEL = "PROGRAMA PARA GENERAR OBSERVACIONES";
 
     //Menu
     public static final String MENU_FILE  = "Archivo";

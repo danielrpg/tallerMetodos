@@ -14,37 +14,43 @@ public class RandomTimeSeries {
     public RandomTimeSeries(){
     }
 
-    private Date getRandomObservation(Date inicio, Date fin){
-        long ldesde=inicio.getTime();
-        long lhasta=fin.getTime();
-        long randlimit=lhasta-ldesde;
-       // Random random = new Random(System.currentTimeMillis());
-        Double newmilis=new Double(ldesde+(Math.random()*randlimit)); //A la fecha de origen le sumamos el calculo aleatorio.
-       // Double newmilis=new Double(ldesde+( random.nextDouble()*randlimit));
-        Date randomDate=new Date(newmilis.longValue());
-        return randomDate;
+    private Integer getRandomObservation(Date inicio, Date fin){
+        Integer fechaInicio = UIUtility.getInstance().getTimeToDate(inicio);
+        Integer fechaFin = UIUtility.getInstance().getTimeToDate(fin);
+        Integer limite=fechaFin-fechaInicio;
+        Integer newmilis= 0;
+        try {
+
+            //newmilis=new Double(ldesde+(Math.random()*randlimit)); //A la fecha de origen le sumamos el calculo aleatorio.
+            newmilis = (int) (Math.random()*(limite) + fechaInicio);
+
+        }catch (StackOverflowError stackOverflowError){
+            System.out.println("Error: "+stackOverflowError);
+        }
+       // Date randomDate=new Date(newmilis.longValue());
+        return newmilis;
     }
 
-    public List<Date> generarObservaciones(Date inicio, Date fin, List<JSpinner> noInicios, List<JSpinner> noFin, Integer numObservaciones){
-        List<Date> observaciones = new ArrayList<>();
+    public List<Integer> generarObservaciones(Date inicio, Date fin, List<JSpinner> noInicios, List<JSpinner> noFin, Integer numObservaciones){
+        List<Integer> observaciones = new ArrayList<>();
         for (int i = 0; i < numObservaciones; i++){
-            Date fechaRamdon = generarFechaAleatoria(inicio, fin, noInicios, noFin);
+            Integer fechaRamdon = generarFechaAleatoria(inicio, fin, noInicios, noFin);
             observaciones.add(fechaRamdon);
         }
         return observaciones;
     }
 
-    public List<Date> randomTimeSeries(Date inicio, Date fin, Integer numeroObservaciones){
-        List<Date> observaciones = new ArrayList<>();
+    public List<Integer> randomTimeSeries(Date inicio, Date fin, Integer numeroObservaciones){
+        List<Integer> observaciones = new ArrayList<>();
         for (int i = 0; i < numeroObservaciones; i++){
-            Date fechaRamdon = getRandomObservation(inicio, fin);
+            Integer fechaRamdon = getRandomObservation(inicio, fin);
             observaciones.add(fechaRamdon);
         }
         return observaciones;
     }
 
-    private Date generarFechaAleatoria(Date inicio, Date fin, List<JSpinner> noInicios, List<JSpinner> noFin){
-        Date ramdonFecha = getRandomObservation(inicio, fin);
+    private Integer generarFechaAleatoria(Date inicio, Date fin, List<JSpinner> noInicios, List<JSpinner> noFin){
+        Integer ramdonFecha = getRandomObservation(inicio, fin);
         if(esValida(ramdonFecha, noInicios, noFin)){
             return ramdonFecha;
         }else{
@@ -52,15 +58,22 @@ public class RandomTimeSeries {
         }
     }
 
-    private Boolean esValida(Date ramdonFecha, List<JSpinner> noInicios, List<JSpinner> noFin){
+    private Boolean esValida(Integer ramdonFecha, List<JSpinner> noInicios, List<JSpinner> noFin){
         Boolean res = false;
-        for (JSpinner inicio: noInicios) {
-            for (JSpinner fin : noFin){
-                if(ramdonFecha.before((Date)inicio.getValue()) && ramdonFecha.after((Date)fin.getValue())){
-                    res = true;
+        if(noInicios.size() != 0 && noFin.size() != 0){
+            for (JSpinner inicio: noInicios) {
+                for (JSpinner fin : noFin){
+                    Integer init = UIUtility.getInstance().getTimeToDate((Date)inicio.getValue());
+                    Integer end = UIUtility.getInstance().getTimeToDate(((Date)fin.getValue()));
+                    if(ramdonFecha < init && ramdonFecha > end){
+                        res = true;
+                    }
                 }
             }
+        }else{
+            res = true;
         }
+
         return res;
     }
 

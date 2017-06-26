@@ -36,8 +36,8 @@ public class CronogramaFormulario extends JPanel {
 
         titleAnalista = new JLabel("ANALISTA:");
         titleAnalista.setBounds(10, 40, 100, 25);
-        valueAnalista = new JLabel("Juan Perez");
-        valueAnalista.setBounds(150, 40, 100, 25);
+        valueAnalista = new JLabel("");
+        valueAnalista.setBounds(150, 40, 500, 25);
 
         titleFecha = new JLabel("FECHA:");
         titleFecha.setBounds(10, 75, 100, 25);
@@ -46,8 +46,8 @@ public class CronogramaFormulario extends JPanel {
 
         titlePuesto = new JLabel("PUESTO:");
         titlePuesto.setBounds(10, 105, 100, 25);
-        valuePuesto = new JLabel("Torno Automatico");
-        valuePuesto.setBounds(150, 105, 300, 25);
+        valuePuesto = new JLabel("");
+        valuePuesto.setBounds(150, 105, 500, 25);
 
         this.cronogramaController.setCamposCabecera(valueAnalista, valuePuesto);
 

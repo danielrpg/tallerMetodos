@@ -41,7 +41,7 @@ public class UIUtility {
     }
 
     public  Font setFontLabel(){
-        return new Font("Arial", Font.BOLD, 11);
+        return new Font("Arial", Font.BOLD, 12);
     }
 
     public String getCurrentDate(){
@@ -49,6 +49,20 @@ public class UIUtility {
         Date fecha = calendar.getTime();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
         return simpleDateFormat.format(fecha);
+    }
+
+    public Integer getTimeToDate(Date fecha){
+        Integer hour = fecha.getHours();
+        Integer minute = fecha.getMinutes();
+        Integer hora = Integer.parseInt(hour +""+ minute);
+        System.out.println(">>> Hora  : "+ hour+":"+minute);
+        return hora;
+    }
+
+    public String getHoraString(Integer hora){
+        String cadenaHora = String.valueOf(hora);
+        Integer size = cadenaHora.length()
+
     }
 
 }
