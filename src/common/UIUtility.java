@@ -67,7 +67,7 @@ public class UIUtility {
         if(size <= 3){
             nuevaHora = horaChart[size-3]+":"+horaChart[size-2]+""+horaChart[size-1];
         }else if(size <=4){
-            nuevaHora = horaChart[size-3]+""+horaChart[size-3]+":"+horaChart[size-2]+""+horaChart[size-1];
+            nuevaHora = horaChart[size-4]+""+horaChart[size-3]+":"+horaChart[size-2]+""+horaChart[size-1];
         }
 
         return  nuevaHora;

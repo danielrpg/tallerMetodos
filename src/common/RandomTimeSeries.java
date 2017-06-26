@@ -60,7 +60,7 @@ public class RandomTimeSeries {
 
     private Integer generarFechaAleatoria(Date inicio, Date fin, List<JSpinner> noInicios, List<JSpinner> noFin){
         Integer ramdonFecha = getRandomObservation(inicio, fin);
-        if(esValida(ramdonFecha, noInicios, noFin)){
+        if(!esValida(ramdonFecha, noInicios, noFin)){
             return ramdonFecha;
         }else{
             return generarFechaAleatoria(inicio, fin, noInicios, noFin);
@@ -76,13 +76,11 @@ public class RandomTimeSeries {
                     String finString = fin.getValue().toString();
                     Integer init = UIUtility.getInstance().getTimeToDate((Date)inicio.getValue());
                     Integer end = UIUtility.getInstance().getTimeToDate(((Date)fin.getValue()));
-                    if(ramdonFecha < init && ramdonFecha > end){
+                    if(ramdonFecha >= init && ramdonFecha <= end){
                         res = true;
                     }
                 }
             }
-        }else{
-            res = true;
         }
 
         return res;
