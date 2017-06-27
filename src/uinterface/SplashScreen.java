@@ -28,7 +28,7 @@ public class SplashScreen extends JWindow {
         this.setLocationRelativeTo(null);
 
         // Build the splash screen
-        JLabel label = new JLabel(new ImageIcon("./src/assets/loader.gif"));
+        JLabel label = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("assets/loader.gif")));
         JLabel copyrt = new JLabel
                 ("Copyright 2017, G. Daniel Fernandez", JLabel.CENTER);
         copyrt.setFont(new Font("Sans-Serif", Font.BOLD, 12));

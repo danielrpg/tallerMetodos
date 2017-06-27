@@ -119,14 +119,20 @@ public class DatosHorarioContentPanel extends JPanel {
         btnNumObs = new JButton("Generar Rango");
         btnNumObs.setBounds(10, 150, 190, 35);
         btnNumObs.setFont(UIUtility.getInstance().setFontLabel());
-        btnNumObs.setIcon(UIUtility.getImageSizeIcon("./src/assets/clock2.png", 30, 30));
+        ImageIcon imageClock2 = new ImageIcon(getClass().getClassLoader().getResource("assets/clock2.png"));
+        Image imageClock2Left = imageClock2.getImage();
+        Image newImageLeft = imageClock2Left.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        btnNumObs.setIcon(new ImageIcon(newImageLeft));
         btnNumObs.addActionListener(new ObservationListener());
        // establecerDefaul();
 
         limpiarRangos = new JButton();
         limpiarRangos.setBounds(210, 150, 50, 35);
         limpiarRangos.setFont(UIUtility.getInstance().setFontLabel());
-        limpiarRangos.setIcon(UIUtility.getImageSizeIcon("./src/assets/refresh.png", 30, 30));
+        ImageIcon refreshImage = new ImageIcon(getClass().getClassLoader().getResource("assets/refresh.png"));
+        Image imageRefreshLeft = refreshImage.getImage();
+        Image refreshImg = imageRefreshLeft.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        limpiarRangos.setIcon(new ImageIcon(refreshImg));
         limpiarRangos.addActionListener(new RefreshListener());
 
 
@@ -162,7 +168,10 @@ public class DatosHorarioContentPanel extends JPanel {
         generarTabla = new JButton("Generar Cronograma");
         generarTabla.setBounds(10, 510, 190, 35);
         generarTabla.setFont(UIUtility.getInstance().setFontLabel());
-        generarTabla.setIcon(UIUtility.getImageSizeIcon("./src/assets/clipboard.png", 30, 30));
+        ImageIcon clipBoard = new ImageIcon(getClass().getClassLoader().getResource("assets/clipboard.png"));
+        Image clipBoardLeft = clipBoard.getImage();
+        Image newClipBoardLeft = clipBoardLeft.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        generarTabla.setIcon(new ImageIcon(newClipBoardLeft));
         generarTabla.addActionListener(new CronogramaListener());
 
         this.add(labelUno1);

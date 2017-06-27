@@ -26,12 +26,18 @@ public class ImprimirPanel extends JPanel {
         imprimir = new JButton("Imprimir");
         imprimir.setBounds(650,5, 150, 35 );
         imprimir.addActionListener(new ImprimirListener());
-        imprimir.setIcon(UIUtility.getInstance().getImageSizeIcon("./src/assets/printer.png", 30, 30));
+        ImageIcon printImage = new ImageIcon(getClass().getClassLoader().getResource("assets/printer.png"));
+        Image printImageLeft = printImage.getImage();
+        Image newPrintImage = printImageLeft.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        imprimir.setIcon(new ImageIcon(newPrintImage));
 
         salir = new JButton("Salir");
         salir.setBounds(850, 5, 150, 35);
         salir.addActionListener(new SalirListener());
-        salir.setIcon(UIUtility.getInstance().getImageSizeIcon("./src/assets/cancel.png", 30, 30));
+        ImageIcon cancelImage = new ImageIcon(getClass().getClassLoader().getResource("assets/cancel.png"));
+        Image printCancelLeft =  cancelImage.getImage();
+        Image newCancelLeft = printCancelLeft.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        salir.setIcon(new ImageIcon(newCancelLeft));
 
         add(imprimir);
         add(salir);

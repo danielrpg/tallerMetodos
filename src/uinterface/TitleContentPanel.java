@@ -21,11 +21,17 @@ public class TitleContentPanel extends JPanel {
         mainTitle.setFont(new Font("Arial", Font.BOLD, 28));
 
         imageCalendar = new JLabel();
-        imageCalendar.setIcon(UIUtility.getInstance().getImageSizeIcon("./src/assets/calendar.png", 100, 100));
+        ImageIcon imageIcon = new ImageIcon(getClass().getClassLoader().getResource("assets/calendar.png"));
+        Image image = imageIcon.getImage();
+        Image newImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        imageCalendar.setIcon(new ImageIcon(newImage));
 
 
         imageIngeniero = new JLabel();
-        imageIngeniero.setIcon(UIUtility.getImageIcon("./src/assets/img4.jpg"));
+        ImageIcon imageIconLeft = new ImageIcon(getClass().getClassLoader().getResource("assets/img4.jpg"));
+        Image imageLeft = imageIconLeft.getImage();
+        Image newImageLeft = imageLeft.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        imageIngeniero.setIcon(new ImageIcon(newImageLeft));
 
 
         this.setLayout(new BorderLayout());
