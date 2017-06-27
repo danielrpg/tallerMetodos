@@ -116,7 +116,7 @@ public class DatosHorarioContentPanel extends JPanel {
         textTres = new JTextField("2");
         textTres.setBounds(130, 120, 80, 25);
         textTres.setFont(UIUtility.getInstance().setFontLabel());
-        btnNumObs = new JButton("Calcular Numero");
+        btnNumObs = new JButton("Generar Rango");
         btnNumObs.setBounds(10, 150, 190, 35);
         btnNumObs.setFont(UIUtility.getInstance().setFontLabel());
         btnNumObs.setIcon(UIUtility.getImageSizeIcon("./src/assets/clock2.png", 30, 30));
@@ -156,11 +156,11 @@ public class DatosHorarioContentPanel extends JPanel {
         labelTitle6.setBounds(10, 460, 180, 25);
         labelTitle6.setFont(UIUtility.getInstance().setFontLabel());
         text6 = new JTextField();
-        text6.setBounds(190, 460, 130, 25);
+        text6.setBounds(10, 485, 250, 23);
         text6.setFont(UIUtility.getInstance().setFontLabel());
 
         generarTabla = new JButton("Generar Cronograma");
-        generarTabla.setBounds(10, 490, 190, 35);
+        generarTabla.setBounds(10, 510, 190, 35);
         generarTabla.setFont(UIUtility.getInstance().setFontLabel());
         generarTabla.setIcon(UIUtility.getImageSizeIcon("./src/assets/clipboard.png", 30, 30));
         generarTabla.addActionListener(new CronogramaListener());

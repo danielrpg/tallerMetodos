@@ -15,7 +15,7 @@ public class ObservacionTable extends AbstractTableModel {
     private final List<ObservacionModel> tableModelList;
 
     private final String[] columnNames = new String[]{
-        "Observación", "Horas", "Parada", "Funcionando"
+        "OBSERVACION", "HORAS", "PARADA", "FUNCIONANDO"
     };
 
     private final Class[] columnClass = new Class[]{
